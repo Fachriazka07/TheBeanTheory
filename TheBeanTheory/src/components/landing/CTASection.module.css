@@ -1,0 +1,151 @@
+.section {
+  background-color: #fafaf7; /* Creamy outer section */
+  padding-block: clamp(4rem, 10vw, 8rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.roastBlock {
+  background-color: #1a1a1a; /* Deep Espresso Block */
+  width: 100%;
+  max-width: var(--container-2xl);
+  margin: 0 auto;
+  border-radius: 24px;
+  padding: clamp(4rem, 8vw, 6rem) 24px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.2);
+}
+
+/* Subtle coffee bean pattern overlay */
+.roastBlock::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5c-5 0-10 10-10 25s5 25 10 25 10-10 10-25S35 5 30 5z' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3C/svg%3E");
+  opacity: 0.5;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 100px;
+  margin-bottom: 32px;
+  font-family: var(--font-dm-mono);
+  font-size: 10px;
+  color: #8b6f4e;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  position: relative;
+  z-index: 2;
+}
+
+.pulse {
+  width: 6px;
+  height: 6px;
+  background-color: #8b6f4e;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(2.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+.title {
+  font-family: var(--font-playfair);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: #ffffff;
+  max-width: 800px;
+  margin-bottom: 48px;
+  position: relative;
+  z-index: 2;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+  z-index: 2;
+}
+
+@media (min-width: 640px) {
+  .buttonGroup {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.primaryButton {
+  background-color: #ffffff;
+  color: #111111;
+  padding: 20px 40px;
+  border-radius: 12px; /* Modern E-commerce rounded rectangle */
+  font-family: var(--font-dm-sans);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.primaryButton:hover {
+  background-color: #25d366; /* WhatsApp Green Reveal */
+  color: #ffffff;
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(37, 211, 102, 0.2);
+}
+
+.secondaryButton {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 20px 40px;
+  border-radius: 12px;
+  font-family: var(--font-dm-sans);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.secondaryButton:hover {
+  background-color: #ffffff;
+  color: #111111;
+  transform: translateY(-5px);
+}
+
+.icon {
+  font-size: 18px;
+}

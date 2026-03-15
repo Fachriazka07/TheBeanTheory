@@ -1,0 +1,319 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-fixed);
+  height: var(--navbar-height);
+  display: flex;
+  align-items: center;
+  transition:
+    background-color var(--transition-slow),
+    height var(--transition-slow),
+    transform var(--transition-slow),
+    border-color var(--transition-slow),
+    backdrop-filter var(--transition-slow);
+  background-color: transparent;
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15); /* Subtle white border */
+}
+
+.navbar.scrolled {
+  height: var(--navbar-height-scrolled);
+  background-color: rgba(250, 250, 247, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--clr-charcoal);
+  border-bottom: var(--border-width) solid var(--border-color);
+}
+
+.navbar.hidden {
+  transform: translateY(-100%);
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: var(--container-2xl);
+  margin: 0 auto;
+  padding-inline: var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+  /* Center on mobile */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (min-width: 768px) {
+  .logo {
+    position: relative;
+    left: auto;
+    transform: none;
+  }
+}
+
+.logo:hover {
+  opacity: 0.85;
+  color: inherit;
+}
+
+.logoImage {
+  height: 48px;
+  width: 48px;
+  object-fit: contain;
+  transition: filter var(--transition-base);
+}
+
+.logoLight {
+  /* Light bg behind text — use for dark backgrounds (hero section) */
+  filter: brightness(0) invert(1);
+}
+
+.logoDark {
+  /* Dark text already — blend with light page bg */
+  filter: none;
+}
+
+/* Logo text next to icon */
+.logoText {
+  font-family: var(--font-playfair), 'Playfair Display', serif;
+  font-size: var(--fs-h5);
+  font-weight: var(--fw-bold);
+  color: inherit;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  display: none;
+}
+
+@media (min-width: 480px) {
+  .logoText {
+    display: inline;
+  }
+}
+
+/* Desktop Nav Links */
+.navLinks {
+  display: none;
+  list-style: none;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .navLinks {
+    display: flex;
+  }
+}
+
+.navLink {
+  font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: inherit;
+  text-decoration: none;
+  position: relative;
+  padding-block: var(--space-1);
+  transition: color var(--transition-fast);
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--clr-roast);
+  transition: width var(--transition-base);
+}
+
+.navLink:hover::after,
+.navLink.active::after {
+  width: 100%;
+}
+
+.navLink:hover {
+  color: inherit;
+}
+
+/* WhatsApp CTA */
+.waCta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  background-color: #25d366;
+  color: #ffffff;
+  font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  text-decoration: none;
+  transition:
+    background-color var(--transition-fast),
+    transform var(--transition-fast);
+  white-space: nowrap;
+}
+
+.waCta:hover {
+  background-color: #1ebe57;
+  transform: scale(1.03);
+  color: #ffffff;
+}
+
+.waIcon {
+  flex-shrink: 0;
+}
+
+.waText {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .waText {
+    display: inline;
+  }
+}
+
+/* Hamburger */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-2);
+  z-index: calc(var(--z-overlay) + 1);
+  color: inherit;
+}
+
+@media (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: currentColor;
+  transition:
+    transform var(--transition-base),
+    opacity var(--transition-fast);
+}
+
+.hamburger.open span {
+  background-color: var(--clr-off-white);
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile Menu Overlay */
+.mobileMenu {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  background-color: var(--clr-matte-black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-12);
+  clip-path: circle(0% at 40px 40px);
+  transition: clip-path 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+  pointer-events: none;
+}
+
+.mobileMenu.menuOpen {
+  clip-path: circle(150% at 40px 40px);
+  pointer-events: auto;
+}
+
+.mobileNavLinks {
+  list-style: none;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.mobileNavLink {
+  font-family: var(--font-playfair), 'Playfair Display', serif;
+  font-size: var(--fs-h2);
+  color: var(--clr-off-white);
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+.menuOpen .mobileNavLink {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobileNavLink.active {
+  color: var(--clr-roast);
+}
+
+.mobileNavLink:hover {
+  color: var(--clr-roast);
+}
+
+/* Mobile WhatsApp CTA */
+.mobileWaCta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-full);
+  background-color: #25d366;
+  color: #ffffff;
+  font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.5s ease 0.5s,
+    transform 0.5s ease 0.5s,
+    background-color var(--transition-fast);
+}
+
+.menuOpen .mobileWaCta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobileWaCta:hover {
+  background-color: #1ebe57;
+  color: #ffffff;
+}

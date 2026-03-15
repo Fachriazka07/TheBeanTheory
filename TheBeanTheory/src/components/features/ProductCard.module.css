@@ -1,0 +1,147 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff; /* Add solid white back for contrast against outline */
+  overflow: visible;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s ease;
+  height: 100%;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.08); /* Thin elegant outline */
+  border-radius: 4px;
+  padding: 1px; /* Tiny inset for the outline effect */
+}
+
+.card:hover {
+  border-color: rgba(107, 66, 38, 0.3); /* Subtle roast brown outline on hover */
+}
+
+.imageWrapper {
+  position: relative;
+  aspect-ratio: 4/5;
+  width: 100%;
+  overflow: hidden;
+  background-color: #ede9e1; /* Oatmeal placeholder */
+  border-radius: 2px; /* Sharp, modern edges */
+  /* Luxury soft shadow */
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.05);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), filter 1s ease;
+}
+
+.card:hover .imageWrapper {
+  transform: translateY(-8px);
+  box-shadow: 0 35px 70px -15px rgba(44, 24, 16, 0.15);
+}
+
+.card:hover .image {
+  transform: scale(1.1);
+}
+
+.soldOutBadge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  padding: 4px 12px;
+  font-family: var(--font-dm-mono), 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  z-index: 10;
+}
+
+.content {
+  padding: 24px 20px; /* Structured padding inside the outlined card */
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-family: var(--font-playfair), 'Playfair Display', serif;
+  font-size: 32px;
+  color: #1a1a1a;
+  margin: 0 0 8px 0;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+}
+
+.origin {
+  font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: #8b6f4e; /* Mocha accent */
+  margin: 0 0 20px 0;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.badge {
+  font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
+  font-size: 11px;
+  color: #1a1a1a;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.footer {
+  margin-top: auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-top: 24px;
+}
+
+.price {
+  font-family: var(--font-playfair);
+  font-size: 24px;
+  font-weight: 900;
+  color: #1a1a1a;
+}
+
+/* SLEEK BOUTIQUE WA BUTTON */
+.waButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background-color: #1a1a1a; /* Dark Espresso button */
+  color: #ffffff;
+  text-decoration: none;
+  font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 16px 24px;
+  border-radius: 999px;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.waButton:hover {
+  background-color: #25d366; /* Reveal WA Green only on hover */
+  color: #ffffff; /* Keep text white on green background */
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+}
+
+.waButton.disabled {
+  background-color: #e0e0e0;
+  color: #999;
+  cursor: not-allowed;
+}

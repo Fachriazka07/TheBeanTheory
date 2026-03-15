@@ -1,0 +1,221 @@
+.section {
+  background-color: #111111; /* Deep charcoal for a premium feel */
+  padding-block: clamp(6rem, 15vw, 12rem);
+  color: #fafaf7;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle Grain Texture */
+.section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.container {
+  max-width: var(--container-2xl);
+  margin: 0 auto;
+  padding-inline: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+  }
+}
+
+/* Background Large Text */
+.watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-playfair);
+  font-size: 30vmax;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.02);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+  user-select: none;
+}
+
+/* Left: Immersive Image Collage */
+.imageSection {
+  position: relative;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .imageSection {
+    width: 50%;
+  }
+}
+
+.mainImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+  background-color: #1a1a1a;
+}
+
+.mainImage {
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  position: absolute;
+  top: -10%;
+  left: 0;
+  filter: grayscale(0.2) contrast(1.1);
+  transition: filter 0.8s ease;
+}
+
+.secondaryImageWrapper {
+  position: absolute;
+  bottom: -40px;
+  right: -20px;
+  width: 40%;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+  border: 8px solid #111111;
+  z-index: 10;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .secondaryImageWrapper {
+    display: block;
+  }
+}
+
+.secondaryImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Right: Refined Typography */
+.contentSection {
+  width: 100%;
+  padding-top: 80px;
+}
+
+@media (min-width: 1024px) {
+  .contentSection {
+    width: 50%;
+    padding-left: 10%;
+    padding-top: 0;
+  }
+}
+
+.header {
+  margin-bottom: 40px;
+}
+
+.caption {
+  font-family: var(--font-dm-mono);
+  font-size: 12px;
+  color: #8b6f4e; /* Mocha accent */
+  text-transform: uppercase;
+  letter-spacing: 0.5em;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-family: var(--font-playfair);
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+}
+
+.description {
+  font-family: var(--font-dm-sans);
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 480px;
+  margin-bottom: 48px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.statValue {
+  font-family: var(--font-playfair);
+  font-size: 40px;
+  font-weight: 900;
+  color: #8b6f4e;
+}
+
+.statLabel {
+  font-family: var(--font-dm-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--font-dm-sans);
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+.button::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #8b6f4e;
+  transform: scaleX(0.2);
+  transform-origin: left;
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.button:hover {
+  color: #8b6f4e;
+  gap: 24px;
+}
+
+.button:hover::after {
+  transform: scaleX(1);
+}

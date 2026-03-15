@@ -1,0 +1,223 @@
+.footer {
+  background-color: #111111;
+  color: #fafaf7;
+  padding-top: clamp(4rem, 10vw, 8rem);
+  padding-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Grain texture overlay */
+.footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.container {
+  max-width: var(--container-2xl);
+  margin: 0 auto;
+  padding-inline: var(--space-8);
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+    gap: 2rem;
+  }
+}
+
+/* Brand Section */
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.logo {
+  font-family: var(--font-playfair);
+  font-size: 2rem;
+  font-weight: 900;
+  color: #ffffff;
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.tagline {
+  font-family: var(--font-dm-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.5);
+  max-width: 300px;
+}
+
+/* Navigation Columns */
+.columnTitle {
+  font-family: var(--font-dm-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: #8b6f4e; /* Mocha accent */
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  margin-bottom: 2rem;
+}
+
+.linkList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.link {
+  font-family: var(--font-dm-sans);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  width: fit-content;
+  position: relative;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #8b6f4e;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.link:hover {
+  color: #ffffff;
+}
+
+.link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Newsletter Section */
+.newsletter {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.newsletterText {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.inputGroup {
+  display: flex;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.inputGroup:focus-within {
+  border-color: #8b6f4e;
+}
+
+.input {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-family: var(--font-dm-sans);
+  font-size: 14px;
+  width: 100%;
+  outline: none;
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.submitBtn {
+  background: transparent;
+  border: none;
+  color: #8b6f4e;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0 8px;
+}
+
+/* Massive Signature Watermark */
+.watermark {
+  margin-top: 4rem;
+  text-align: center;
+  pointer-events: none;
+  user-select: none;
+}
+
+.watermarkText {
+  font-family: var(--font-playfair);
+  font-size: clamp(4rem, 12vw, 15rem);
+  font-weight: 900;
+  line-height: 0.8;
+  color: rgba(255, 255, 255, 0.03);
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+}
+
+/* Bottom Bar */
+.bottomBar {
+  max-width: var(--container-2xl);
+  margin: 0 auto;
+  padding-inline: var(--space-8);
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .bottomBar {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.copyright {
+  font-family: var(--font-dm-mono);
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.legalLinks {
+  display: flex;
+  gap: 2rem;
+}
+
+.legalLink {
+  font-family: var(--font-dm-mono);
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.3);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: color 0.3s ease;
+}
+
+.legalLink:hover {
+  color: rgba(255, 255, 255, 0.6);
+}

@@ -1,0 +1,95 @@
+.heroTitle {
+  font-family: var(--font-playfair), 'Playfair Display', serif;
+  font-weight: 900;
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  font-size: clamp(3rem, 8.5vw, 7.5rem);
+  display: block;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+  -webkit-font-smoothing: antialiased;
+}
+
+.title1 {
+  color: #ffffff;
+}
+
+.title2 {
+  color: #f5f0eb;
+  margin-top: -0.05em;
+}
+
+.revealContainer {
+  position: relative;
+  overflow: hidden;
+  padding: 0.1em 0.5em;
+  margin: -0.1em -0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Boutique "Floating" Pill Button */
+.ctaButton {
+  position: relative;
+  width: 230px;
+  height: 60px;
+  background: #ffffff;
+  color: #111111;
+  border-radius: 999px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Smooth spatial transitions only */
+  transition: 
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  border: none;
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.ctaButton:hover {
+  /* "Melayang" Effect: Scale + Lift + Soft Shadow */
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+.btnText {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: inherit;
+  transition: gap 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ctaButton:hover .btnText {
+  gap: 18px; /* Gently expand the internal spacing */
+}
+
+/* Icon Animation: Slide and reveal */
+.btnIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ctaButton:hover .btnIcon {
+  transform: translateX(4px) rotate(-45deg); /* Modern directional tilt */
+}
+
+.ctaButton:active {
+  transform: translateY(-2px) scale(0.98);
+}
