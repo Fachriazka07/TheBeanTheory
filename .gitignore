@@ -1,0 +1,7 @@
+# Ignore AI Agent and workspace configuration files
+.agent/
+.agents/
+AI-Agent/
+scripts/
+skills-lock.json
+AI_AGENT_INSTALL.md
