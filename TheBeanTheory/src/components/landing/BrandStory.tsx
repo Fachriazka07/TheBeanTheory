@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@/hooks/useGSAP';
@@ -11,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function BrandStory() {
   const containerRef = useRef<HTMLElement>(null);
-  const mainImageRef = useRef<HTMLImageElement>(null);
+  const mainImageRef = useRef<HTMLDivElement>(null);
   const watermarkRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -29,17 +30,20 @@ export function BrandStory() {
         },
       });
 
-      // 2. Main Image Parallax
-      gsap.to(mainImageRef.current, {
-        yPercent: 20,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: true,
-        },
-      });
+      // 2. Main Image Parallax (Applying to the inner Image element via ref)
+      const mainImageElement = mainImageRef.current?.querySelector('img');
+      if (mainImageElement) {
+        gsap.to(mainImageElement, {
+          yPercent: 20,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          },
+        });
+      }
 
       // 3. Staggered Content Reveal
       const tl = gsap.timeline({
@@ -105,19 +109,22 @@ export function BrandStory() {
       <div className={styles.container}>
         {/* Image Collage Section */}
         <div className={styles.imageSection}>
-          <div className={styles.mainImageWrapper}>
-            <img
+          <div className={styles.mainImageWrapper} ref={mainImageRef}>
+            <Image
               src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1200&auto=format&fit=crop"
               alt="Artisan Coffee Preparation"
+              fill
               className={styles.mainImage}
-              ref={mainImageRef}
+              sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </div>
           <div className={styles.secondaryImageWrapper}>
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=600&auto=format&fit=crop"
               alt="Roasted Coffee Beans Detail"
+              fill
               className={styles.secondaryImage}
+              sizes="20vw"
             />
           </div>
         </div>
@@ -150,7 +157,7 @@ export function BrandStory() {
             </div>
           </div>
 
-          <Link href="/about" className={styles.button}>
+          <Link href="/products" className={styles.button}>
             Discover Our Method <span>→</span>
           </Link>
         </div>
