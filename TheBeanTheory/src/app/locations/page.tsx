@@ -1,36 +1,49 @@
 import { Suspense } from 'react';
-// import { MapContainer } from '@/components/features/MapContainer';
-// import { BranchList } from '@/components/features/BranchList';
-import { LocationsSkeleton } from '@/components/ui/skeleton';
+import { getLocations } from '@/lib/queries';
+import { LocationsPageClient } from './components/LocationsPageClient';
 
 export const metadata = {
-  title: 'Locations | The Bean Theory',
-  description: 'Find a The Bean Theory roastery near you.',
+  title: 'Our Locations | The Bean Theory',
+  description: 'Visit our roasteries in Jakarta and experience specialty coffee.',
 };
 
-export default function LocationsPage() {
-  return (
-    <main className="pt-24 px-8 max-w-[1440px] mx-auto min-h-screen">
-      <header className="mb-12">
-        <h1 className="text-5xl font-playfair text-charcoal mb-4">Visit Us</h1>
-        <p className="text-stone text-lg max-w-2xl">
-          Experience our specialty coffee in person at one of our locations.
-        </p>
-      </header>
+export default async function LocationsPage() {
+  const initialLocations = await getLocations();
 
-      <Suspense fallback={<LocationsSkeleton />}>
-        <div className="flex flex-col lg:flex-row gap-8">
-          <div className="w-full lg:w-1/3">
-            {/* <BranchList /> */}
-            <p className="text-stone">Branch list will be implemented here.</p>
-          </div>
-          <div className="w-full lg:w-2/3 h-[500px] lg:h-[700px] bg-cream rounded-lg overflow-hidden">
-            {/* <MapContainer /> */}
-            <p className="text-stone p-8 text-center mt-32">
-              Interactive map will be implemented here.
-            </p>
-          </div>
+  const fallbackLocations = [
+    {
+      _id: '1',
+      branchName: 'TBT Sudirman',
+      address: 'Jl. Jenderal Sudirman No. 123, Jakarta Selatan 12190',
+      coordinates: { lat: -6.2247, lng: 106.8077 },
+      openingHours: [{ day: 'Mon-Sun', open: '08:00', close: '22:00' }],
+    },
+    {
+      _id: '2',
+      branchName: 'TBT Kemang',
+      address: 'Jl. Kemang Raya No. 45, Jakarta Selatan 12730',
+      coordinates: { lat: -6.2737, lng: 106.8113 },
+      openingHours: [{ day: 'Mon-Sun', open: '09:00', close: '23:00' }],
+    },
+    {
+      _id: '3',
+      branchName: 'TBT BSD',
+      address: 'Jl. BSD Green Office Park No. 7, Tangerang 15345',
+      coordinates: { lat: -6.3016, lng: 106.6535 },
+      openingHours: [{ day: 'Mon-Sun', open: '08:00', close: '21:00' }],
+    },
+  ];
+
+  const locations = initialLocations.length > 0 ? initialLocations : fallbackLocations;
+
+  return (
+    <main className="min-h-screen bg-white">
+      <Suspense fallback={
+        <div className="py-32 text-center font-mono text-xs uppercase tracking-widest text-stone-400">
+          Preparing Locations...
         </div>
+      }>
+        <LocationsPageClient locations={locations} />
       </Suspense>
     </main>
   );

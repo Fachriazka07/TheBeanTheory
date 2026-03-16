@@ -107,7 +107,10 @@ export function Footer() {
           <p className={styles.newsletterText}>
             Join our mailing list for exclusive roasts and brewing tips.
           </p>
-          <form className={styles.inputGroup} onSubmit={(e) => e.preventDefault()}>
+          <form
+            className={styles.inputGroup}
+            onSubmit={(e) => e.preventDefault()}
+          >
             <input
               type="email"
               placeholder="Email address"

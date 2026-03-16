@@ -1,0 +1,240 @@
+.showroom {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.productBlock {
+  min-height: 80vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column; /* Stacked on mobile */
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding-block: 4rem;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .productBlock {
+    min-height: 100vh;
+    flex-direction: row;
+    padding-inline: 4rem;
+    gap: 8rem;
+    padding-block: 8rem;
+  }
+
+  .productBlock.reversed {
+    flex-direction: row-reverse;
+  }
+}
+
+/* Image Side */
+.imageSection {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  perspective: 1000px;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .imageSection {
+    margin-bottom: 0;
+  }
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  max-width: 320px; /* Smaller on mobile */
+  aspect-ratio: 1/1;
+  z-index: 2;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 1024px) {
+  .imageContainer {
+    max-width: 500px;
+    cursor: crosshair;
+  }
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.12));
+  will-change: transform;
+}
+
+/* Background Number - Scaled for Mobile */
+.bgNumber {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-playfair);
+  font-size: 30vh; /* Better for mobile aspect ratio */
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.03);
+  line-height: 1;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@media (min-width: 1024px) {
+  .bgNumber {
+    top: 50%;
+    font-size: 40vmax;
+  }
+}
+
+/* Content Side */
+.contentSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  width: 100%;
+  max-width: 600px;
+  text-align: center; /* Centered on mobile */
+}
+
+@media (min-width: 1024px) {
+  .contentSection {
+    text-align: left;
+  }
+}
+
+.caption {
+  font-family: var(--font-dm-mono);
+  font-size: 10px;
+  color: #8b6f4e;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.title {
+  font-family: var(--font-playfair);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+  letter-spacing: -0.02em;
+}
+
+.origin {
+  font-family: var(--font-dm-sans);
+  font-size: 1.125rem;
+  color: #666;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+.description {
+  font-family: var(--font-dm-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 2.5rem;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centered on mobile */
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .meta {
+    justify-content: flex-start;
+    margin-bottom: 4rem;
+  }
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.metaLabel {
+  font-family: var(--font-dm-mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #8b6f4e;
+}
+
+.metaValue {
+  font-family: var(--font-dm-sans);
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column; /* Stacked on mobile */
+  align-items: center;
+  gap: 1.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+@media (min-width: 640px) {
+  .footer {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.price {
+  font-family: var(--font-playfair);
+  font-size: 2rem;
+  font-weight: 900;
+  color: #1a1a1a;
+}
+
+.waButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #1a1a1a;
+  color: #ffffff;
+  padding: 16px 32px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-family: var(--font-dm-sans);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  width: 100%; /* Full width on mobile */
+  max-width: 300px;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 640px) {
+  .waButton {
+    width: auto;
+  }
+}
+
+.waButton:hover {
+  background: #25d366;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(37, 211, 102, 0.2);
+}

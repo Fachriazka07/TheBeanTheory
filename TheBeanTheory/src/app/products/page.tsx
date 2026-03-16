@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
-// import { ProductFilter } from '@/components/features/ProductFilter';
-// import { ProductGrid } from '@/components/features/ProductGrid';
+import { getProducts } from '@/lib/queries';
+import { ProductsPageClient } from '@/components/features/ProductsPageClient';
 import { ProductsSkeleton } from '@/components/ui/skeleton';
 
 export const metadata = {
@@ -8,24 +8,62 @@ export const metadata = {
   description: 'Explore our selection of specialty coffee beans.',
 };
 
-export default function ProductsPage() {
-  return (
-    <main className="pt-24 px-8 max-w-[1440px] mx-auto">
-      <header className="mb-16">
-        <h1 className="text-5xl font-playfair text-charcoal mb-4">
-          Our Selection
-        </h1>
-        <p className="text-stone text-lg max-w-2xl">
-          Single origin and signature blends, roasted with precision in Jakarta.
-        </p>
-      </header>
+export default async function ProductsPage() {
+  const initialProducts = await getProducts();
 
+  // Fallback for demo if no products in Sanity yet
+  const fallbackProducts = [
+    {
+      _id: '1',
+      title: 'Gayo Mountain',
+      slug: { current: 'gayo-mountain' },
+      origin: 'Aceh, Sumatra',
+      roastLevel: 'medium' as const,
+      process: 'natural' as const,
+      price: 85000,
+      isReady: true,
+      notes: ['Dark Chocolate', 'Floral'],
+      image: { asset: { _ref: 'local-gayo' } } as any,
+      imageUrl: '/images/Product/Gayo Mountain.png',
+      waLink: '',
+    },
+    {
+      _id: '2',
+      title: 'Toraja Sapan',
+      slug: { current: 'toraja-sapan' },
+      origin: 'Sulawesi',
+      roastLevel: 'dark' as const,
+      process: 'washed' as const,
+      price: 92000,
+      isReady: true,
+      notes: ['Spices', 'Nutty'],
+      image: { asset: { _ref: 'local-toraja' } } as any,
+      imageUrl: '/images/Product/Toraja Sapan.png',
+      waLink: '',
+    },
+    {
+      _id: '3',
+      title: 'Flores Bajawa',
+      slug: { current: 'flores-bajawa' },
+      origin: 'NTT',
+      roastLevel: 'light' as const,
+      process: 'honey' as const,
+      price: 78000,
+      isReady: true,
+      notes: ['Caramel', 'Fruity'],
+      image: { asset: { _ref: 'local-flores' } } as any,
+      imageUrl: '/images/Product/Flores Bajawa.png',
+      waLink: '',
+    },
+  ];
+
+  const products =
+    initialProducts.length > 0 ? initialProducts : fallbackProducts;
+
+  return (
+    <main>
       <Suspense fallback={<ProductsSkeleton />}>
-        {/* <ProductFilter /> */}
-        {/* <ProductGrid /> */}
-        <section className="min-h-[50vh]">
-          <p className="text-stone">Products grid will be implemented here.</p>
-        </section>
+        <ProductsPageClient initialProducts={products} />
       </Suspense>
     </main>
   );

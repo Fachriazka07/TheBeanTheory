@@ -72,7 +72,7 @@
   .cardWrapper:nth-child(3) {
     margin-top: 8vh; /* Cards 1 and 3 sit lower */
   }
-  
+
   .cardWrapper:nth-child(2) {
     margin-top: 0; /* Center card sits higher */
     z-index: 5;
@@ -87,7 +87,7 @@
   font-family: var(--font-playfair);
   font-size: 60px;
   font-weight: 900;
-  color: rgba(0,0,0,0.03);
+  color: rgba(0, 0, 0, 0.03);
   line-height: 1;
   pointer-events: none;
 }
@@ -110,7 +110,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem 2.5rem;
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 999px;
   transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
@@ -119,7 +119,7 @@
   background: #1a1a1a;
   color: #ffffff;
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .driftText {
@@ -127,7 +127,7 @@
   font-family: var(--font-playfair), 'Playfair Display', serif;
   font-size: 20vmax;
   font-weight: 900;
-  color: rgba(0,0,0,0.015);
+  color: rgba(0, 0, 0, 0.015);
   white-space: nowrap;
   pointer-events: none;
   z-index: 0;

@@ -21,7 +21,9 @@ export function HeroSection() {
         defaults: { ease: 'power4.out' },
         onComplete: () => {
           // Allow overflow after reveal to prevent parallax cutting
-          const containers = container.current?.querySelectorAll(`.${styles.revealContainer}`);
+          const containers = container.current?.querySelectorAll(
+            `.${styles.revealContainer}`
+          );
           containers?.forEach((el) => {
             (el as HTMLElement).style.overflow = 'visible';
           });
@@ -58,11 +60,11 @@ export function HeroSection() {
       // Parallax effect (Titles only)
       const handleMouseMove = (e: MouseEvent) => {
         const { clientX, clientY } = e;
-        const xRel = (clientX / window.innerWidth - 0.5);
-        const yRel = (clientY / window.innerHeight - 0.5);
+        const xRel = clientX / window.innerWidth - 0.5;
+        const yRel = clientY / window.innerHeight - 0.5;
 
         // Move text TOWARDS cursor direction
-        const xPos = xRel * 80; 
+        const xPos = xRel * 80;
         const yPos = yRel * 40;
 
         gsap.to(title1Ref.current, {
@@ -130,7 +132,7 @@ export function HeroSection() {
           <source src="/images/video.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-[#100c0a]" />
-        <div className="absolute inset-0 bg-black/40" /> 
+        <div className="absolute inset-0 bg-black/40" />
       </div>
 
       <div className="relative z-20 flex flex-col items-center gap-12 max-w-[100vw] mx-auto w-full">

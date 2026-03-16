@@ -3,7 +3,9 @@
   flex-direction: column;
   background-color: #ffffff; /* Add solid white back for contrast against outline */
   overflow: visible;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s ease;
+  transition:
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.5s ease;
   height: 100%;
   cursor: pointer;
   position: relative;
@@ -13,7 +15,12 @@
 }
 
 .card:hover {
-  border-color: rgba(107, 66, 38, 0.3); /* Subtle roast brown outline on hover */
+  border-color: rgba(
+    107,
+    66,
+    38,
+    0.3
+  ); /* Subtle roast brown outline on hover */
 }
 
 .imageWrapper {
@@ -30,7 +37,9 @@
 
 .image {
   object-fit: cover;
-  transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), filter 1s ease;
+  transition:
+    transform 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 1s ease;
 }
 
 .card:hover .imageWrapper {
@@ -96,7 +105,7 @@
   text-transform: uppercase;
   font-weight: 700;
   padding-bottom: 4px;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .footer {

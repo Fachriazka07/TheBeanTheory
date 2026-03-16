@@ -95,7 +95,7 @@ export function FeaturedProducts({ products }: FeaturedProductsProps) {
 
       // Synchronized bloom reveal for the 3-card set
       const cards = gsap.utils.toArray(`.${styles.cardWrapper}`);
-      
+
       gsap.from(cards, {
         y: 100,
         opacity: 0,

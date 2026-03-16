@@ -49,18 +49,8 @@
   gap: var(--space-3);
   text-decoration: none;
   transition: opacity var(--transition-fast);
-  /* Center on mobile */
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-@media (min-width: 768px) {
-  .logo {
-    position: relative;
-    left: auto;
-    transform: none;
-  }
+  position: relative;
+  z-index: calc(var(--z-overlay) + 1);
 }
 
 .logo:hover {
@@ -69,23 +59,27 @@
 }
 
 .logoImage {
-  height: 48px;
-  width: 48px;
+  height: 40px;
+  width: 40px;
   object-fit: contain;
   transition: filter var(--transition-base);
 }
 
+@media (min-width: 768px) {
+  .logoImage {
+    height: 48px;
+    width: 48px;
+  }
+}
+
 .logoLight {
-  /* Light bg behind text — use for dark backgrounds (hero section) */
   filter: brightness(0) invert(1);
 }
 
 .logoDark {
-  /* Dark text already — blend with light page bg */
   filter: none;
 }
 
-/* Logo text next to icon */
 .logoText {
   font-family: var(--font-playfair), 'Playfair Display', serif;
   font-size: var(--fs-h5);
@@ -93,12 +87,11 @@
   color: inherit;
   letter-spacing: 0.01em;
   white-space: nowrap;
-  display: none;
 }
 
-@media (min-width: 480px) {
+@media (max-width: 380px) {
   .logoText {
-    display: inline;
+    display: none;
   }
 }
 
@@ -151,7 +144,7 @@
 
 /* WhatsApp CTA */
 .waCta {
-  display: flex;
+  display: none; /* Hidden on mobile */
   align-items: center;
   gap: var(--space-2);
   padding: var(--space-2) var(--space-4);
@@ -168,6 +161,12 @@
   white-space: nowrap;
 }
 
+@media (min-width: 768px) {
+  .waCta {
+    display: flex;
+  }
+}
+
 .waCta:hover {
   background-color: #1ebe57;
   transform: scale(1.03);
@@ -182,7 +181,7 @@
   display: none;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .waText {
     display: inline;
   }
@@ -199,6 +198,7 @@
   padding: var(--space-2);
   z-index: calc(var(--z-overlay) + 1);
   color: inherit;
+  margin-left: auto; /* Push to right */
 }
 
 @media (min-width: 768px) {
@@ -217,20 +217,9 @@
     opacity var(--transition-fast);
 }
 
-.hamburger.open span {
-  background-color: var(--clr-off-white);
-}
-
-.hamburger.open span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-
-.hamburger.open span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.open span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
+.hamburger.open {
+  opacity: 0; /* Hide hamburger when menu is open because we have a close icon */
+  pointer-events: none;
 }
 
 /* Mobile Menu Overlay */
@@ -244,14 +233,34 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-12);
-  clip-path: circle(0% at 40px 40px);
-  transition: clip-path 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+  clip-path: circle(0% at calc(100% - 40px) 40px); /* Open from top right */
+  transition: clip-path 0.7s cubic-bezier(0.77, 0, 0.175, 1);
   pointer-events: none;
 }
 
 .mobileMenu.menuOpen {
-  clip-path: circle(150% at 40px 40px);
+  clip-path: circle(150% at calc(100% - 40px) 40px);
   pointer-events: auto;
+}
+
+/* Close Icon inside Mobile Menu */
+.closeMenu {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: none;
+  border: none;
+  color: var(--clr-off-white);
+  cursor: pointer;
+  padding: var(--space-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.closeMenu:hover {
+  transform: rotate(90deg);
 }
 
 .mobileNavLinks {
@@ -268,23 +277,24 @@
   color: var(--clr-off-white);
   text-decoration: none;
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateX(40px); /* Slide from right */
   transition:
     opacity 0.4s ease,
     transform 0.4s ease;
+  display: block;
 }
 
 .menuOpen .mobileNavLink {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(0);
 }
 
 .mobileNavLink.active {
-  color: var(--clr-roast);
+  color: var(--clr-mocha);
 }
 
 .mobileNavLink:hover {
-  color: var(--clr-roast);
+  color: var(--clr-mocha);
 }
 
 /* Mobile WhatsApp CTA */

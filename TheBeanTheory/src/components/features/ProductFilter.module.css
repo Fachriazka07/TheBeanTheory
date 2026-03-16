@@ -1,0 +1,68 @@
+.filterWrapper {
+  margin-bottom: var(--space-8);
+  position: sticky;
+  top: 100px;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.filterContainer {
+  background: rgba(255, 255, 255, 0.05); /* Dark theme translucent */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 100px;
+  padding: 10px 32px;
+  display: flex;
+  gap: 32px;
+  pointer-events: auto;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.filterBtn {
+  background: transparent;
+  border: none;
+  font-family: var(--font-dm-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  padding: 8px 0;
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+.filterBtn:hover {
+  color: #ffffff;
+}
+
+.activeBtn {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.activeBtn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #8b6f4e; /* Mocha accent */
+}
+
+@media (max-width: 768px) {
+  .filterContainer {
+    gap: 16px;
+    padding: 8px 24px;
+    overflow-x: auto;
+    max-width: 95vw;
+  }
+
+  .filterBtn {
+    white-space: nowrap;
+  }
+}
