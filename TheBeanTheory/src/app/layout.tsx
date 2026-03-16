@@ -33,9 +33,7 @@ export const metadata: Metadata = {
   },
   description:
     'Single origin specialty coffee, hand-roasted in Jakarta. Explore our beans, learn to brew, and visit our roastery.',
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
-  ),
+  metadataBase: new URL('http://localhost:3000'),
   openGraph: {
     title: 'The Bean Theory — Specialty Coffee Roastery',
     description: 'Single origin specialty coffee, hand-roasted in Jakarta.',
